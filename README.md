@@ -1,2 +1,0 @@
-# helm-example
-helm example

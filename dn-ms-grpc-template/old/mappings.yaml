@@ -6,6 +6,6 @@ metadata:
   namespace: default # TODO: change this to get from .values
 spec:
   grpc: true
-  prefix: /{{ .Values.packageName }}.{{ .Values.serviceName }}/
-  rewrite: /{{ .Values.packageName }}.{{ .Values.serviceName }}/
-  service: {{ .Release.Name }}
+  prefix: /app.AppController/
+  rewrite: /app.AppController/
+  service: grpc-example

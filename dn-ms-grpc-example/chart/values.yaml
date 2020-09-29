@@ -5,5 +5,5 @@ runTask: "connect-to-gateway"
 port: 8080
 
 image:
-  name: "test/grpc-b:latest"
+  name: "grpc-test:latest"
 
