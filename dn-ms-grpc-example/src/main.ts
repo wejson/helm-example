@@ -1,8 +1,8 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { Logger } from '@nestjs/common';
-import { Transport } from '@nestjs/microservices';
-import { join } from 'path';
+import {NestFactory} from '@nestjs/core';
+import {AppModule} from './app.module';
+import {Logger} from '@nestjs/common';
+import {Transport} from '@nestjs/microservices';
+import {join} from 'path';
 
 const logger = new Logger('Main');
 const microserviceOptions = {
@@ -16,9 +16,10 @@ const microserviceOptions = {
 };
 
 async function bootstrap() {
+  console.log(`>>>>>>>>>>>>>>>>>. 0.0.0.0:${process.env.port || 8080}`);
   const app = await NestFactory.createMicroservice(AppModule, microserviceOptions);
   app.listen(() => {
-    logger.log('Microservice is listening...');
+    logger.log('Microservice is listening...', `>>>>>>>>>>>>>>>>>. 0.0.0.0:${process.env.port || 8080}`);
   });
 }
 

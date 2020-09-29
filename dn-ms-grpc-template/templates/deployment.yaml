@@ -21,7 +21,8 @@ spec:
           imagePullPolicy: Never
           resources: {}
           ports:
-            - containerPort: {{ .Values.port }}
+            - name: {{ .Release.Name }}-p
+              containerPort: {{ .Values.port }}
               protocol: TCP
           envFrom:
             - configMapRef:

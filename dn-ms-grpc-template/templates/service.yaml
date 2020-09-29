@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    run: {{ .Values.runTask }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: {{ .Release.Name }}-p
+      protocol: TCP
+      name: {{ .Release.Name }}-service-port # TODO: chek what name required and if required
+  selector:
+    run: {{ .Values.runTask }}

@@ -2,9 +2,11 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+serviceName: ""
+packageName: ""
 name: ""
 runTask: "null"
-port: "8080"
+port: 8080
 replicaCount: 1
 
 image:

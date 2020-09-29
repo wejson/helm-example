@@ -2,8 +2,10 @@
 apiVersion: getambassador.io/v2
 kind: Mapping
 metadata:
-  name: {{ .Release.Name }}-web
-  namespace: default
+  name: {{ .Release.Name }}-grpc-mapping
+  namespace: default # TODO: change this to get from .values
 spec:
-  prefix: /
-  service: {{ .Release.Name }}:{{ .Values.port }}
+  grpc: true
+  prefix: /{{ .Values.packageName }}.{{ .Values.serviceName }}/
+  rewrite: /{{ .Values.packageName }}.{{ .Values.serviceName }}/
+  service: {{ .Release.Name }}

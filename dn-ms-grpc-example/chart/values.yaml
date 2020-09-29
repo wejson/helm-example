@@ -1,7 +1,9 @@
+packageName: app
+serviceName: AppController
 replicaCount: 1
-runTask: "test"
-port: "8080"
+runTask: "connect-to-gateway"
+port: 8080
 
 image:
-  name: "test/grpc-example"
+  name: "test/grpc-b:latest"
 
