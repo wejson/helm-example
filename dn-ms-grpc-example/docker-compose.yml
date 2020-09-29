@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  grpc-b:
+    build:
+      context: ./
+    ports:
+      - 3003:3000
+      - 9003:9229
+    command: npm run start:debug
+    volumes:
+      - ./src:/app/src:z
+    env_file:
+      - .env.example
+    networks:
+      - zoom-network
+networks:
+  zoom-network:
+    external:
+      name: zoom-network

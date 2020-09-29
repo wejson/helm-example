@@ -1,0 +1,9 @@
+# TODO: maybe this should be in ambassador repo
+apiVersion: getambassador.io/v2
+kind: Mapping
+metadata:
+  name: {{ .Release.Name }}-web
+  namespace: default
+spec:
+  prefix: /
+  service: {{ .Release.Name }}:{{ .Values.port }}

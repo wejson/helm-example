@@ -1,0 +1,7 @@
+replicaCount: 1
+runTask: "test"
+port: "3000"
+
+image:
+  name: "test/http-example"
+
