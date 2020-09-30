@@ -3,7 +3,7 @@ FROM node:12-alpine as builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+RUN npm i
 
 FROM node:12-alpine
 

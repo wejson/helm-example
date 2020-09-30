@@ -1,11 +1,11 @@
 version: '3.3'
 services:
-  service-a:
+  grpc-a:
     build:
       context: ./
     ports:
-      - 3001:3000
-      - 9001:9229
+      - 3004:3000
+      - 9004:9229
     command: npm run start:debug
     volumes:
       - ./src:/app/src:z
