@@ -1,7 +1,0 @@
-replicaCount: 1
-runTask: "test"
-port: "8080"
-
-image:
-  name: "test/http-example"
-

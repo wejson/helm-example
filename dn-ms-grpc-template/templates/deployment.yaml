@@ -2,47 +2,47 @@
 apiVersion: getambassador.io/v2
 kind: Mapping
 metadata:
-  name: grpc-py
+  name: {{ .Release.Name }}-mapping
 spec:
   grpc: True
-  prefix: /app.AppController
-  rewrite: /app.AppController
-  service: grpc-example
+  prefix: /{{ .Values.packageName }}.{{ .Values.serviceName }}
+  rewrite: /{{ .Values.packageName }}.{{ .Values.serviceName }}
+  service: {{ .Release.Name }}-service
 ---
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    service: grpc-example
-  name: grpc-example
+    service: {{ .Release.Name }}
+  name: {{ .Release.Name }}-service
 spec:
   type: ClusterIP
   ports:
-    - name: grpc-greet
+    - name: {{ .Release.Name }}-p
       port: 80
-      targetPort: grpc-api
+      targetPort: {{ .Release.Name }}-ep
   selector:
-    service: grpc-example
+    service: {{ .Release.Name }}-service
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: grpc-example
+  name: {{ .Release.Name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      service: grpc-example
+      service: {{ .Release.Name }}-service
   template:
     metadata:
       labels:
-        service: grpc-example
+        service: {{ .Release.Name }}-service
     spec:
       containers:
-        - name: grpc-example
+        - name: {{ .Release.Name }}
           image: {{ .Values.image.name }}
           imagePullPolicy:  {{ .Values.image.pullPolicy }}
           ports:
-            - name: grpc-api
-              containerPort: 8080
+            - name: {{ .Release.Name }}-ep
+              containerPort: {{ .Values.port }}
       restartPolicy: Always
