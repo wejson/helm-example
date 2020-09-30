@@ -1,29 +1,3 @@
----
-apiVersion: getambassador.io/v2
-kind: Mapping
-metadata:
-  name: {{ .Release.Name }}-mapping
-spec:
-  grpc: True
-  prefix: /{{ .Values.packageName }}.{{ .Values.serviceName }}
-  rewrite: /{{ .Values.packageName }}.{{ .Values.serviceName }}
-  service: {{ .Release.Name }}-service
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    service: {{ .Release.Name }}
-  name: {{ .Release.Name }}-service
-spec:
-  type: ClusterIP
-  ports:
-    - name: {{ .Release.Name }}-p
-      port: 80
-      targetPort: {{ .Release.Name }}-ep
-  selector:
-    service: {{ .Release.Name }}-service
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:

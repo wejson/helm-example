@@ -1,0 +1,9 @@
+apiVersion: getambassador.io/v2
+kind: Mapping
+metadata:
+  name: {{ .Release.Name }}-mapping
+spec:
+  grpc: True
+  prefix: /{{ .Values.packageName }}.{{ .Values.serviceName }}
+  rewrite: /{{ .Values.packageName }}.{{ .Values.serviceName }}
+  service: {{ .Release.Name }}-service
